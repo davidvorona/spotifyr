@@ -1,0 +1,13 @@
+body {
+  font-family: "Yantramanav", sans serif;
+}
+
+h1 {
+  color: #fa6e43;
+  font-family: "Righteous", cursive;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

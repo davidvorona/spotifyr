@@ -1,26 +1,36 @@
+const webpack = require("webpack");
+const path = require("path");
+
 module.exports = {
-    entry: "./app/main.js",
+    entry: [
+        "webpack-hot-middleware/client",
+        "./app/index.js"
+    ],
     output: {
-        path: __dirname + "/app/webpack",
+        path: path.join(__dirname, "dist/"),
+        publicPath: "/static/",
         filename: "bundle.js"
     },
-    devServer: {
-        inline: true,
-        contentBase: "./app",
-        port: 8080
-    },
+    devtool: "source-map",
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoEmitOnErrorsPlugin()
+    ],
     module: {
         loaders: [
             {
                 test: [/\.js$/, /\.es6$/],
                 exclude: /node_modules/,
                 loader: "babel-loader",
-                query: { presets: ["es2015", "react"] }
+                query: {
+                    presets: ["es2015", "react"],
+                    plugins: ["transform-object-rest-spread"]
+                }
             },
             {
                 test: /\.css$/,
                 exclude: /node_modules/,
-                loader: "css-loader"
+                loader: ["style-loader", "css-loader"]
             }
         ]
     }

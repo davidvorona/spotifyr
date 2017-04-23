@@ -1,16 +1,18 @@
-import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+import React, { Component } from "react";
+import { Router, Route } from "react-router";
+import { Provider } from "react-redux";
+import store, { history } from "../store";
 
-class App extends Component {
-    constructor(props) {
-        super(props);
-        this.state = { value: "hello-world" };
-    }
+import Main from "./Main";
 
-    render() {
-        return (
-            <div>Test Div</div>
-        );
-    }
-}
+const App = () => {
+    return (
+      <Provider store={store}>
+        <Router history={history}>
+          <Route path="/" component={Main} />
+        </Router>
+      </Provider>
+    );
+};
 
 export default App;

@@ -31,6 +31,26 @@ module.exports = {
                 test: /\.css$/,
                 exclude: /node_modules/,
                 loader: ["style-loader", "css-loader"]
+            },
+            {
+                test: /bootstrap\/js\//,
+                loader: "imports-loader"
+            },
+            {
+                test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url-loader"
+            },
+            {
+                test: /\.ttf(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url-loader"
+            },
+            {
+                test: /\.eot(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "file-loader"
+            },
+            {
+                test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
+                loader: "url-loader"
             }
         ]
     }

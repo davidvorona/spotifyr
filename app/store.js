@@ -8,9 +8,27 @@ import rootReducer from "./reducers/rootReducer";
 // supply data from api...how? async funcs in store?
 
 // create an object for the default data (currently a test object)
-const defaultState = { community: ["David", "Bob", "Joe", "Cindy"] };
+const defaultState = {
+    communities: {
+        popular: ["Rap", "Techno", "Dope", "BitchWhoGuessedIt"],
+        myCommunities: ["Chillin", "ForTheBoys", "Bird Up"],
+        current: ["MyCurrentCommunity", "CurrentSong", "CurrentArtist", 13],
+        active: "popular"
+    },
+    panels: {
+        leftPanel: "Communities",
+        rightPanel: "NowPlaying"
+    },
+    nowplaying: {
+        song: "Love Me",
+        artist: "Lil Wayne",
+        album: "Love Me - Single"
+    }
+};
 
-const store = createStore(rootReducer, defaultState);
+const store = createStore(rootReducer, defaultState,
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+);
 
 export const history = syncHistoryWithStore(createHistory(), store);
 

@@ -1,13 +1,54 @@
 body {
-  font-family: "Yantramanav", sans serif;
+    font-family: "Yantramanav", sans serif !important;
+    font-size: 16px !important;
+    background-color: #D3D3D3 !important;
 }
 
 h1 {
-  color: #fa6e43;
-  font-family: "Righteous", cursive;
+    color: #fa6e43 !important;
+    font-family: "Righteous", cursive !important;
 }
 
 a {
-  text-decoration: none;
-  color: inherit;
+    text-decoration: none !important;
+    color: inherit !important;
+}
+
+.vcenter {
+    display: inline-block !important;
+    vertical-align: middle !important;
+    float: none !important;
+}
+
+.nav-item {
+    font-size: 20px;
+}
+
+.app-container {
+    background-color: #fa6e43;
+    border-radius: 10px;
+    height: 80%;
+}
+
+.widget-container {
+    background-color: grey;
+    height: 95%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+.list-group-item {
+    width: 100% !important;
+}
+
+.btn-group {
+    border-radius: 0px !important;
+}
+
+.right-border {
+    border-right: 1px solid black !important;
+}
+
+.left-border {
+    border-left: 1px solid black !important;
 }

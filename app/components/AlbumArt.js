@@ -1,4 +1,5 @@
-import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+/* eslint-disable no-unused-vars, arrow-body-style */
+import React, { Component } from "react";
 
 const AlbumArt = ({ image }) => {
     return (

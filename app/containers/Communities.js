@@ -1,10 +1,11 @@
-import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+/* eslint-disable no-unused-vars, arrow-body-style */
+import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import * as actions from "../actions/communitiesActions";
-import TabBody from "../components/TabBody";  // eslint-disable-line no-unused-vars
+import TabBody from "../components/TabBody";
 import Community from "../components/Community";
 import ActiveTab from "../components/ActiveTab";
 
@@ -28,7 +29,6 @@ class Communities extends Component {
     }
 
     render() {
-        console.log(this.props);
         const { communities, displayCommunityTab, fetchCommunity } = this.props;
         return (
             <div className="container-fluid widget-container">

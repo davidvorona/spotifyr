@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars, arrow-body-style, no-underscore-dangle */
 import { createStore, applyMiddleware, compose } from "redux";
 import createSagaMiddleware from "redux-saga";
 import createHistory from "history/createBrowserHistory";

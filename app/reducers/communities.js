@@ -29,10 +29,4 @@ const communities = (state = [], action) => {
     }
 };
 
-// next step, tune in button should bring up details (like current page) of fetched community
-// currently changes "selected" state, should this switch to "current"?
-// realization i came to: we don't need reducers for async browser actions...
-// ...action creators hit sagas, which run and fire off their own dispatches...
-// ... with fetched data for reducers (e.g.) FETCH_COMMUNITY_SUCCEEDED
-
 export default communities;

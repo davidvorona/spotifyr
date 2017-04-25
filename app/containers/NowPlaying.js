@@ -1,9 +1,10 @@
-import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+/* eslint-disable no-unused-vars, arrow-body-style */
+import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import * as actions from "../actions/playingActions";
-import TabBody from "../components/TabBody";  // eslint-disable-line no-unused-vars
+import TabBody from "../components/TabBody";
 import AlbumArt from "../components/AlbumArt";
 
 class NowPlaying extends Component {

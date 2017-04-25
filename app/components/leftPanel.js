@@ -1,4 +1,6 @@
-import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+/* eslint-disable no-unused-vars, arrow-body-style */
+import React, { Component } from "react";
+
 import Communities from "../containers/Communities";
 import NowPlaying from "../containers/NowPlaying";
 import Menu from "./Menu";

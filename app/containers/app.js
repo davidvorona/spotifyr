@@ -1,5 +1,5 @@
+/* eslint-disable no-unused-vars, arrow-body-style */
 import React, { Component } from "react";
-// import { Router, Route } from "react-router";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import store, { history } from "../store";

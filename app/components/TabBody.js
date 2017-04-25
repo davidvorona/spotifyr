@@ -1,8 +1,7 @@
-import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+/* eslint-disable no-unused-vars, arrow-body-style */
+import React, { Component } from "react";
 
 import PanelList from "./PanelList";
-import ListItem from "./ListItem";
-
 import refresh from "../../public/refresh.png";
 
 const TabBody = ({ props, CustomComponent, fetch, fetchAll }) => {

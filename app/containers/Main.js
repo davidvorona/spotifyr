@@ -1,13 +1,12 @@
-import React, { Component } from "react"; // eslint-disable-line no-unused-vars
+/* eslint-disable no-unused-vars, arrow-body-style */
+import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import * as actions from "../actions/panelActions";
-import LeftPanel from "../components/LeftPanel";  // eslint-disable-line no-unused-vars
-import RightPanel from "../components/RightPanel";  // eslint-disable-line no-unused-vars
+import LeftPanel from "../components/LeftPanel";
+import RightPanel from "../components/RightPanel";
 
-// dispatch actions to fetch initial data for state?
-// use componentWillMount and componentDidReceiveProps
 class Main extends Component {
     render() {
         const { leftPanel, rightPanel } = this.props.panels;

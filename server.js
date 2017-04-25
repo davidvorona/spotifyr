@@ -17,10 +17,9 @@ app.use(webpackDevMid(compiler, {
 app.use(webpackHotMid(compiler));
 
 app.use("static/", express.static(path.join(__dirname, "app/")));
-console.log(path.join(__dirname, "index.html"));
 
 app.get("*", (req, res) => {
-    res.sendFile(path.join(__dirname, "app/index.html"));
+    res.sendFile(path.join(__dirname, "index.html"));
 });
 
 app.listen(8080, (err) => {
@@ -30,3 +29,5 @@ app.listen(8080, (err) => {
     }
     console.log("You're listening at http://localhost:8080.");
 });
+
+module.exports = app;

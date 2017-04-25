@@ -17,6 +17,7 @@ module.exports = {
         "no-param-reassign": ["error", { "props": false }]
     },
     "globals": {
-        "document": true
+        "document": true,
+        "window": true
     }
 };

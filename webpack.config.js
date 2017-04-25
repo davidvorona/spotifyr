@@ -4,6 +4,7 @@ const path = require("path");
 module.exports = {
     entry: [
         "webpack-hot-middleware/client",
+        "babel-polyfill",
         "./app/index.js"
     ],
     output: {
@@ -35,6 +36,10 @@ module.exports = {
             {
                 test: /bootstrap\/js\//,
                 loader: "imports-loader"
+            },
+            {
+                test: /\.(gif|jpe?g|png|ico)$/,
+                loader: "url-loader?limit=10000"
             },
             {
                 test: /\.(woff|woff2)(\?v=\d+\.\d+\.\d+)?$/,

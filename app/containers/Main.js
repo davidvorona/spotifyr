@@ -6,12 +6,15 @@ import * as actions from "../actions/panelActions";
 import LeftPanel from "../components/LeftPanel";  // eslint-disable-line no-unused-vars
 import RightPanel from "../components/RightPanel";  // eslint-disable-line no-unused-vars
 
+// dispatch actions to fetch initial data for state?
+// use componentWillMount and componentDidReceiveProps
 class Main extends Component {
     render() {
+        const { leftPanel, rightPanel } = this.props.panels;
         return (
             <div className="container app-container">
-              <LeftPanel leftPanel={this.props.panels.leftPanel} />
-              <RightPanel rightPanel={this.props.panels.rightPanel} />
+                <LeftPanel leftPanel={leftPanel} />
+                <RightPanel rightPanel={rightPanel} />
             </div>
         );
     }
@@ -19,10 +22,7 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        panels: {
-            leftPanel: state.panels.leftPanel,
-            rightPanel: state.panels.rightPanel
-        }
+        panels: state.panels
     };
 };
 

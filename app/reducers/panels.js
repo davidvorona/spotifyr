@@ -3,12 +3,12 @@ const panels = (state = [], action) => {
     case "CHANGE_LEFT_PANEL":
         return {
             ...state,
-            [panels.leftPanel]: action.leftPanel
+            leftPanel: action.leftPanel
         };
     case "CHANGE_RIGHT_PANEL":
         return {
             ...state,
-            [panels.rightPanel]: action.rightPanel
+            rightPanel: action.rightPanel
         };
     default:
         return state;

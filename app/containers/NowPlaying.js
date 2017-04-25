@@ -3,14 +3,17 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import * as actions from "../actions/playingActions";
-import PanelTab from "../components/PanelTab";  // eslint-disable-line no-unused-vars
+import TabBody from "../components/TabBody";  // eslint-disable-line no-unused-vars
+import AlbumArt from "../components/AlbumArt";
 
 class NowPlaying extends Component {
     render() {
-        const { song, artist, album } = this.props.nowplaying;
+        const { song, artist, album, image } = this.props.nowplaying;
         return (
             <div className="container-fluid widget-container">
               <h3>Now Playing</h3>
+              <AlbumArt image={image} />
+              <hr></hr>
               <div>Song: {song}</div>
               <div>Artist: {artist}</div>
               <div>Album: {album}</div>

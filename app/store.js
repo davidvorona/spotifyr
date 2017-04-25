@@ -1,36 +1,49 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import createSagaMiddleware from "redux-saga";
 import createHistory from "history/createBrowserHistory";
 import { syncHistoryWithStore } from "react-router-redux";
 
 // import the root reducer
 import rootReducer from "./reducers/rootReducer";
-
-// supply data from api...how? async funcs in store?
+import sagas from "./sagas";
 
 // create an object for the default data (currently a test object)
 const defaultState = {
     communities: {
-        popular: ["Rap", "Techno", "Dope", "BitchWhoGuessedIt"],
-        myCommunities: ["Chillin", "ForTheBoys", "Bird Up"],
-        current: ["MyCurrentCommunity", "CurrentSong", "CurrentArtist", 13],
-        active: "popular"
+        popular: [],
+        myCommunities: [],
+        current: [],
+        active: ["popular", "list", true]
     },
     panels: {
-        leftPanel: "Communities",
+        overlayMenu: false,
+        leftPanel: "Menu",
         rightPanel: "NowPlaying"
     },
     nowplaying: {
         song: "Love Me",
         artist: "Lil Wayne",
-        album: "Love Me - Single"
+        album: "Love Me - Single",
+        image: "https://images.rapgenius.com/b13998f08c2fe9349b19c4464d786ce1.500x500x1.jpg"
+    },
+    utils: {
+        isLoading: false
     }
 };
 
-const store = createStore(rootReducer, defaultState,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+const sagaMiddleware = createSagaMiddleware();
+const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+
+const store = createStore(rootReducer, defaultState, composeEnhancers(
+  applyMiddleware(sagaMiddleware)
+  // window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+));
+
+sagaMiddleware.run(sagas);
 
 export const history = syncHistoryWithStore(createHistory(), store);
+
+export default store;
 
 if (module.hot) {
     module.hot.accept("./reducers/rootReducer.js", () => {
@@ -38,5 +51,3 @@ if (module.hot) {
         store.replaceReducer(nextRootReducer);
     });
 }
-
-export default store;

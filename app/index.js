@@ -1,10 +1,8 @@
 // stateless container div
-// includes nav >> hamburger menu, account button
-// includes app >> spotifyr, account page
 
 import React from "react";
 import { render } from "react-dom";
-import { Link } from "react-router-dom";
+import store from "./store";
 
 import css from "./styles.css";
 import bootstrap from "bootstrap-webpack";
@@ -15,7 +13,9 @@ const index = (
   <div>
     <div className="container">
       <div className="row">
-        <div className="vcenter text-center col-md-3 nav-item">Menu</div>
+        <div className="vcenter text-center col-md-3 nav-item">
+          <a href="#" onClick={() => { store.dispatch({ type: "CHANGE_LEFT_PANEL", leftPanel: "Menu" }); }}>Menu</a>
+        </div>
         <div className="vcenter text-center col-md-6">
           <h1><a href="/">spotifyr</a></h1>
         </div>

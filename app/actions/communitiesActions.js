@@ -1,22 +1,31 @@
-// action creators*
+// community action creators*
 
-export const displayMyCommunities = (active) => {
+// community tab
+export const displayCommunityTab = (active, kind, refresh) => {
     return {
-        type: "DISPLAY_MY_COMMUNITIES",
-        active
+        type: "DISPLAY_COMMUNITY_TAB",
+        active,
+        kind,
+        refresh
     };
 };
 
-export const displayPopular = (active) => {
+// community async
+export const fetchPopular = () => {
     return {
-        type: "DISPLAY_POPULAR",
-        active
+        type: "FETCH_POPULAR"
     };
 };
 
-export const displayCurrent = (active) => {
+export const fetchMyCommunities = () => {
     return {
-        type: "DISPLAY_CURRENT",
-        active
+        type: "FETCH_MY_COMMUNITIES"
+    };
+};
+
+export const fetchCommunity = (community) => {
+    return {
+        type: "FETCH_COMMUNITY",
+        community
     };
 };

@@ -5,8 +5,6 @@ import { Provider } from "react-redux";
 import store, { history } from "../store";
 
 import Main from "./Main";
-import Communities from "./Communities";
-import PanelTab from "../components/PanelTab";
 
 const App = () => {
     return (

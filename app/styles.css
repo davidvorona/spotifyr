@@ -24,23 +24,6 @@ a {
     font-size: 20px;
 }
 
-.app-container {
-    background-color: #fa6e43;
-    border-radius: 10px;
-    height: 80%;
-}
-
-.widget-container {
-    background-color: grey;
-    height: 95%;
-    margin-top: 2.5%;
-    margin-bottom: 2.5%;
-}
-
-.list-group-item {
-    width: 100% !important;
-}
-
 .btn-group {
     border-radius: 0px !important;
 }
@@ -51,4 +34,153 @@ a {
 
 .left-border {
     border-left: 1px solid black !important;
+}
+
+.active {
+    background-color: darkgrey;
+    color: black;
+}
+
+.inactive {
+    background-color: #404040;
+    color: white;
+}
+
+button:focus {
+    outline: 0 !important;
+}
+
+button:hover {
+    color: inherit !important;
+}
+
+.clear-image-button {
+    background-color: transparent;
+    border: 0px;
+    width: 35px;
+    height: 35px;
+    padding: 0px;
+}
+
+.icon-background {
+    margin-top: 5%;
+    background-color: #fa6e43;
+    border-radius: 5px;
+    height: 50%;
+    width: 25%;
+    padding: 0px;
+}
+
+.menu-item {
+    cursor: pointer;
+}
+
+.menu-item:hover {
+    background-color: darkgrey !important;
+}
+
+.icon {
+    max-height: 95%;
+    max-width: 95%;
+}
+
+.spin-div {
+    max-height: 30px;
+    max-width: 30px;
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 4000ms;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-animation-timing-function: linear;
+    -moz-animation-name: spin;
+    -moz-animation-duration: 4000ms;
+    -moz-animation-iteration-count: infinite;
+    -moz-animation-timing-function: linear;
+    -ms-animation-name: spin;
+    -ms-animation-duration: 4000ms;
+    -ms-animation-iteration-count: infinite;
+    -ms-animation-timing-function: linear;
+
+    animation-name: spin;
+    animation-duration: 4000ms;
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+}
+
+@-ms-keyframes spin {
+    from { -ms-transform: rotate(0deg); }
+    to { -ms-transform: rotate(359deg); }
+}
+@-moz-keyframes spin {
+    from { -moz-transform: rotate(0deg); }
+    to { -moz-transform: rotate(359deg); }
+}
+@-webkit-keyframes spin {
+    from { -webkit-transform: rotate(0deg); }
+    to { -webkit-transform: rotate(359deg); }
+}
+@keyframes spin {
+    from {
+        transform:rotate(0deg);
+    }
+    to {
+        transform:rotate(360deg);
+    }
+}
+
+.app-container {
+    background-color: #404040;
+    border: 1px solid #202020;;
+    border-radius: 10px;
+    height: 80%;
+    min-height: 550px;
+}
+
+.widget-container {
+    color: white;
+    background-color: #181818;
+    box-shadow: 10px 10px 10px black;
+    height: 95%;
+    margin-top: 2.5%;
+    margin-bottom: 2.5%;
+}
+
+.menu-container {
+    background-color: darkgrey !important;
+    color: black !important;
+    height: 80% !important;
+    padding: 2%;
+}
+
+.menu-item {
+    height: 48%;
+}
+
+.content-container {
+    background-color: darkgrey !important;
+    color: black !important;
+    height: 80% !important;
+    padding-top: 2%;
+}
+
+.list-group-item {
+    background-color: #282828 !important;
+    color: white;
+    width: 98%;
+    border: 2px solid #181818 !important;
+    border-radius: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 2px 2px black;
+}
+
+.list-group-item:nth-child(n+2) {
+    margin-top: 2%;
+}
+
+.list-button {
+    background-color: #fa6e43;
+    color: white;
+    border-radius: 3px;
+    outline: none;
+    /*box-shadow: 2px 2px 2px #fa6e43;*/
 }

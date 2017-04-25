@@ -8,10 +8,10 @@ import AlbumArt from "../components/AlbumArt";
 
 class NowPlaying extends Component {
     render() {
-        const { song, artist, album, image } = this.props.nowplaying;
+        console.log(this.props);
         return (
             <div className="container-fluid widget-container">
-              <h3>Now Playing</h3>
+              <h3>My Music</h3>
               <AlbumArt image={image} />
               <hr></hr>
               <div>Song: {song}</div>

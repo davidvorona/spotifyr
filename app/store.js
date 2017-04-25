@@ -10,18 +10,24 @@ import sagas from "./sagas";
 
 // create an object for the default data (currently a test object)
 const defaultState = {
+    panels: {
+        overlayMenu: false,
+        leftPanel: "Menu",
+        rightPanel: "NowPlaying"
+    },
     communities: {
         popular: [],
         myCommunities: [],
         current: [],
         active: ["popular", "list", true]
     },
-    panels: {
-        overlayMenu: false,
-        leftPanel: "Menu",
-        rightPanel: "NowPlaying"
+    music: {
+        playlists: [],
+        songs: [],
+        currentPlaylist: "Vibes",
+        active: ["playlists", "list", false]
     },
-    nowplaying: {
+    nowPlaying: {
         song: "Love Me",
         artist: "Lil Wayne",
         album: "Love Me - Single",

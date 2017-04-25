@@ -1,15 +1,15 @@
-const nowplaying = (state = [], action) => {
+const nowPlaying = (state = [], action) => {
     switch (action.type) {
     case "CHANGE_SONG":
         return {
             ...state,
-            [nowplaying.song]: action.song,
-            [nowplaying.song]: action.artist,
-            [nowplaying.song]: action.album
+            [nowPlaying.song]: action.song,
+            [nowPlaying.song]: action.artist,
+            [nowPlaying.song]: action.album
         };
     default:
         return state;
     }
 };
 
-export default nowplaying;
+export default nowPlaying;

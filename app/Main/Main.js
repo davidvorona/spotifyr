@@ -4,16 +4,22 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import * as actions from "./actions/panelActions";
+import * as utils from "./actions/utilsActions";
 import LeftPanel from "./components/LeftPanel";
 import RightPanel from "./components/RightPanel";
+import AppModal from "./components/AppModal";
 
 class Main extends Component {
     render() {
         const { leftPanel, rightPanel } = this.props.panels;
+        const { modalTitle, modalContent } = this.props.utils;
         return (
-            <div className="container app-container">
+            <div>
+              <AppModal title={modalTitle} ContentComponent={modalContent}/>
+              <div className="container app-container">
                 <LeftPanel leftPanel={leftPanel} />
                 <RightPanel rightPanel={rightPanel} />
+              </div>
             </div>
         );
     }
@@ -21,11 +27,12 @@ class Main extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        panels: state.panels
+        panels: state.panels,
+        utils: state.utils
     };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...actions, ...utils }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Main);
 

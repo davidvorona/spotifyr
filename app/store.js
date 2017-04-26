@@ -7,6 +7,7 @@ import { syncHistoryWithStore } from "react-router-redux";
 // import the root reducer
 import rootReducer from "./reducers/rootReducer";
 import sagas from "./sagas";
+import BaseComponent from "./Main/components/BaseComponent";
 
 // create an object for the default data (currently a test object)
 const defaultState = {
@@ -34,7 +35,9 @@ const defaultState = {
         image: "https://images.rapgenius.com/b13998f08c2fe9349b19c4464d786ce1.500x500x1.jpg"
     },
     utils: {
-        isLoading: false
+        isLoading: false,
+        modalTitle: "",
+        modalContent: BaseComponent
     }
 };
 

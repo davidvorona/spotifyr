@@ -14,6 +14,16 @@ a {
     color: inherit !important;
 }
 
+input {
+    border: none;
+    background-color: inherit;
+    color: white !important;
+}
+
+input:focus {
+    outline: 0 !important;
+}
+
 .vcenter {
     display: inline-block !important;
     vertical-align: middle !important;
@@ -73,7 +83,8 @@ button:hover {
 
 .menu-item {
     cursor: pointer;
-}
+    height: 48%;
+} 
 
 .menu-item:hover {
     background-color: darkgrey !important;
@@ -123,6 +134,43 @@ button:hover {
     to { transform:rotate(0deg); }
 }
 
+.add-button {
+    cursor: pointer;
+}
+
+.list-group-item {
+    background-color: #282828 !important;
+    color: white;
+    width: 98%;
+    border: 2px solid #181818 !important;
+    border-radius: 2px;
+    margin-left: auto;
+    margin-right: auto;
+    box-shadow: 2px 2px 2px black;
+}
+
+.list-group-item:nth-child(n+2) {
+    margin-top: 2%;
+}
+
+.list-button {
+    background-color: #fa6e43;
+    color: white;
+    border-radius: 3px;
+    outline: none;
+}
+
+.modal-dialog {
+    width: 30%;
+}
+
+.modal-content {
+    color: white;
+    font-size: 1.5em;
+    background-color: #181818;
+    border: 2px solid #fa6e43;
+}
+
 .app-container {
     background-color: #404040;
     border: 1px solid #202020;;
@@ -147,36 +195,9 @@ button:hover {
     padding: 2%;
 }
 
-.menu-item {
-    height: 48%;
-}
-
 .content-container {
     background-color: darkgrey !important;
     color: black !important;
     height: 80% !important;
     padding-top: 2%;
-}
-
-.list-group-item {
-    background-color: #282828 !important;
-    color: white;
-    width: 98%;
-    border: 2px solid #181818 !important;
-    border-radius: 2px;
-    margin-left: auto;
-    margin-right: auto;
-    box-shadow: 2px 2px 2px black;
-}
-
-.list-group-item:nth-child(n+2) {
-    margin-top: 2%;
-}
-
-.list-button {
-    background-color: #fa6e43;
-    color: white;
-    border-radius: 3px;
-    outline: none;
-    /*box-shadow: 2px 2px 2px #fa6e43;*/
 }

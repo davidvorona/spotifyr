@@ -5,9 +5,11 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import * as actions from "./actions/communitiesActions";
+import * as utils from "../actions/utilsActions";
 import TabBody from "../components/TabBody";
 import Community from "./components/Community";
 import ActiveTab from "../components/ActiveTab";
+import CommunityForm from "./components/CommunityForm";
 
 class Communities extends Component {
     componentDidMount() {
@@ -29,10 +31,16 @@ class Communities extends Component {
     }
 
     render() {
-        const { communities, displayCommunityTab, fetchCommunity } = this.props;
+        const { communities, displayCommunityTab, fetchCommunity, chooseModalTitleContent } = this.props;
         return (
             <div className="container-fluid widget-container">
-              <h3>Communities</h3>
+              <h3 className="col-sm-1">x</h3>
+              <h3 className="col-sm-10">Communities</h3>
+              <h3 className="col-sm-1 add-button"
+                data-toggle="modal"
+                data-target=".app-modal"
+                onClick={() => { chooseModalTitleContent("Create a Community", CommunityForm); }}>+
+              </h3>
               <div className="row center-block">
                 <ActiveTab
                   name="Popular"
@@ -66,11 +74,12 @@ class Communities extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        communities: state.communities
+        communities: state.communities,
+        utils: state.utils
     };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...actions, ...utils }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Communities);
 

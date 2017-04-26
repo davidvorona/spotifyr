@@ -1,9 +1,9 @@
 /* eslint-disable no-unused-vars, arrow-body-style */
 import React, { Component } from "react";
-import store from "../store";
+import store from "../../store";
 
-import musicImg from "../../public/music.png";
-import communitiesImg from "../../public/communities.png";
+import musicImg from "../../../public/music.png";
+import communitiesImg from "../../../public/communities.png";
 
 const Menu = () => {
     const changeLeftPanel = (leftPanel) => {

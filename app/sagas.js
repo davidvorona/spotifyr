@@ -1,5 +1,5 @@
-import { call, put, takeLatest, takeEvery } from "redux-saga/effects";
-import data from "./api/communities";
+import { call, put, takeLatest } from "redux-saga/effects";
+import data from "./Main/Communities/actions/communitiesApi";
 
 function* fetchPopular() {
     try {

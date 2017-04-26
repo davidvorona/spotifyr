@@ -1,8 +1,9 @@
 /* eslint-disable no-unused-vars, arrow-body-style */
 import React, { Component } from "react";
 
-import Communities from "../containers/Communities";
-import NowPlaying from "../containers/NowPlaying";
+import Communities from "../Communities/Communities";
+import NowPlaying from "../NowPlaying/NowPlaying";
+import MyMusic from "../MyMusic/MyMusic";
 
 const RightPanel = ({ rightPanel }) => {
     let panelComponent;

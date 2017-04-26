@@ -3,9 +3,9 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import * as actions from "../actions/panelActions";
-import LeftPanel from "../components/LeftPanel";
-import RightPanel from "../components/RightPanel";
+import * as actions from "./actions/panelActions";
+import LeftPanel from "./components/LeftPanel";
+import RightPanel from "./components/RightPanel";
 
 class Main extends Component {
     render() {

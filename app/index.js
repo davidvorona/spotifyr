@@ -1,13 +1,12 @@
-// stateless container div
-
+/* eslint-disable no-unused-vars, arrow-body-style */
 import React from "react";
 import { render } from "react-dom";
+import bootstrap from "bootstrap-webpack";
 import store from "./store";
 
 import css from "./styles.css";
-import bootstrap from "bootstrap-webpack";
 
-import App from "./containers/App";
+import App from "./App";
 
 const index = (
   <div>

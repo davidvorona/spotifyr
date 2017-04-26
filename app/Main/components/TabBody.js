@@ -2,7 +2,7 @@
 import React, { Component } from "react";
 
 import PanelList from "./PanelList";
-import refresh from "../../public/refresh.png";
+import refresh from "../../../public/refresh.png";
 
 const TabBody = ({ props, CustomComponent, fetch, fetchAll }) => {
     const active = props.active[0];

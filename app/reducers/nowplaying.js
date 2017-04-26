@@ -4,8 +4,8 @@ const nowPlaying = (state = [], action) => {
         return {
             ...state,
             [nowPlaying.song]: action.song,
-            [nowPlaying.song]: action.artist,
-            [nowPlaying.song]: action.album
+            [nowPlaying.artist]: action.artist,
+            [nowPlaying.album]: action.album
         };
     default:
         return state;

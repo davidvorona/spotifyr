@@ -4,9 +4,9 @@ import { Link } from "react-router-dom";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import * as actions from "../actions/communitiesActions";
+import * as actions from "./actions/communitiesActions";
 import TabBody from "../components/TabBody";
-import Community from "../components/Community";
+import Community from "./components/Community";
 import ActiveTab from "../components/ActiveTab";
 
 class Communities extends Component {

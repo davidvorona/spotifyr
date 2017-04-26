@@ -2,9 +2,9 @@
 import React, { Component } from "react";
 import { BrowserRouter, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import store, { history } from "../store";
+import store, { history } from "./store";
 
-import Main from "./Main";
+import Main from "./Main/Main";
 
 const App = () => {
     return (

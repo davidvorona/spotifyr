@@ -3,8 +3,7 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import * as actions from "../actions/musicActions";
-import AlbumArt from "../components/AlbumArt";
+import * as actions from "./actions/musicActions";
 
 class NowPlaying extends Component {
     render() {
@@ -12,11 +11,6 @@ class NowPlaying extends Component {
         return (
             <div className="container-fluid widget-container">
               <h3>My Music</h3>
-              <AlbumArt image={image} />
-              <hr></hr>
-              <div>Song: {song}</div>
-              <div>Artist: {artist}</div>
-              <div>Album: {album}</div>
             </div>
         );
     }

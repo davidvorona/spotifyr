@@ -3,13 +3,13 @@ import React, { Component } from "react";
 import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
-import * as actions from "../actions/playingActions";
+import * as actions from "./actions/playingActions";
 import TabBody from "../components/TabBody";
-import AlbumArt from "../components/AlbumArt";
+import AlbumArt from "./components/AlbumArt";
 
 class NowPlaying extends Component {
     render() {
-        const { song, artist, album, image } = this.props.nowplaying;
+        const { song, artist, album, image } = this.props.nowPlaying;
         return (
             <div className="container-fluid widget-container">
               <h3>Now Playing</h3>
@@ -25,7 +25,7 @@ class NowPlaying extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        nowplaying: state.nowplaying
+        nowPlaying: state.nowPlaying
     };
 };
 

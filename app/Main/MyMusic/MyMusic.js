@@ -7,7 +7,6 @@ import * as actions from "./actions/musicActions";
 
 class NowPlaying extends Component {
     render() {
-        console.log(this.props);
         return (
             <div className="container-fluid widget-container">
               <h3>My Music</h3>
@@ -18,7 +17,7 @@ class NowPlaying extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        nowplaying: state.nowplaying
+        nowPlaying: state.nowPlaying
     };
 };
 

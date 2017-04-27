@@ -23,9 +23,17 @@ export const fetchMyCommunities = () => {
     };
 };
 
+// when sockets/rooms are set up, this should be joinCommunity
 export const fetchCommunity = (community) => {
     return {
         type: "FETCH_COMMUNITY",
+        community
+    };
+};
+
+export const createCommunity = (community) => {
+    return {
+        type: "CREATE_COMMUNITY",
         community
     };
 };

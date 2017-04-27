@@ -21,8 +21,17 @@ const communities = (state = [], action) => {
             current: action.community,
             active: ["current", "content", false]
         };
+    case "CREATE_COMMUNITY":
+        return {
+            ...state,
+            current: action.community,
+            active: ["current", "content", false]
+        };
     case "FETCH_FAILED":
         console.log("Fetch failed.");
+        return state;
+    case "CREATE_FAILED":
+        console.log("Create failed.");
         return state;
     default:
         return state;

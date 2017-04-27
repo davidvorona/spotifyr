@@ -84,7 +84,7 @@ button:hover {
 .menu-item {
     cursor: pointer;
     height: 48%;
-} 
+}
 
 .menu-item:hover {
     background-color: darkgrey !important;
@@ -200,4 +200,12 @@ button:hover {
     color: black !important;
     height: 80% !important;
     padding-top: 2%;
+}
+
+.modal-body {
+    padding-bottom: 0px;
+}
+
+.submit-form:hover {
+    color: #fa6e43 !important;
 }

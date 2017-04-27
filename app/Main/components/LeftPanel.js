@@ -6,12 +6,25 @@ import NowPlaying from "../NowPlaying/NowPlaying";
 import MyMusic from "../MyMusic/MyMusic";
 import Menu from "./Menu";
 
-const LeftPanel = ({ leftPanel }) => {
+const LeftPanel = ({ leftPanel, changeLeftPanel }) => {
     let panelComponent;
-    if (leftPanel === "Communities") panelComponent = <Communities />;
-    else if (leftPanel === "NowPlaying") panelComponent = <NowPlaying />;
-    else if (leftPanel === "MyMusic") panelComponent = <MyMusic />;
-    else if (leftPanel === "Menu") panelComponent = <Menu />;
+    switch (leftPanel) {
+    case "Communities":
+        panelComponent = <Communities />;
+        break;
+    case "NowPlaying":
+        panelComponent = <NowPlaying />;
+        break;
+    case "MyMusic":
+        panelComponent = <MyMusic />;
+        break;
+    case "Menu":
+        panelComponent = <Menu changePanel={changeLeftPanel} />;
+        break;
+    default:
+        panelComponent = <Menu changePanel={changeLeftPanel} />;
+        break;
+    }
     return (
         <div className="container col-lg-6 text-center">
           <div>{panelComponent}</div>

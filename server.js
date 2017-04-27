@@ -3,10 +3,12 @@ const express = require("express");
 const path = require("path");
 const webpack = require("webpack");
 const cookieParser = require("cookie-parser");
+const bodyParser = require("body-parser");
 const webpackConfig = require("./webpack.config");
 
 const spotifyController = require("./controllers/spotify/spotifyController");
 const userController = require("./controllers/users/userController");
+const communityController = require("./controllers/communities/communityController");
 
 const app = express();
 
@@ -23,10 +25,11 @@ app.use(webpackDevMid(compiler, {
 
 app.use(webpackHotMid(compiler));
 
+app.use("static/", express.static(path.join(__dirname, "app/")));
+app.use(bodyParser.json());
+
 // spotify auth routes and middleware
 app.use(cookieParser());
-
-app.use("static/", express.static(path.join(__dirname, "app/")));
 
 app.get("/login", spotifyController.requestAuthToAccessData);
 
@@ -40,6 +43,8 @@ app.get("/callback",
 app.get("/refresh_token", spotifyController.refreshToken, userController.saveUser);
 
 // app and api routes
+app.post("/community", communityController.saveCommunity);
+
 app.get("/", (req, res) => {
     if (!req.cookies.access_token) return res.redirect("/login");
     return res.sendFile(path.join(__dirname, "index.html"));

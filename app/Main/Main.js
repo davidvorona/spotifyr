@@ -13,12 +13,13 @@ class Main extends Component {
     render() {
         const { leftPanel, rightPanel } = this.props.panels;
         const { modalTitle, modalContent } = this.props.utils;
+        const { changeLeftPanel, changeRightPanel } = this.props;
         return (
             <div>
               <AppModal title={modalTitle} ContentComponent={modalContent}/>
               <div className="container app-container">
-                <LeftPanel leftPanel={leftPanel} />
-                <RightPanel rightPanel={rightPanel} />
+                <LeftPanel leftPanel={leftPanel} changeLeftPanel={changeLeftPanel} />
+                <RightPanel rightPanel={rightPanel} changeRightPanel={changeRightPanel} />
               </div>
             </div>
         );

@@ -1,4 +1,5 @@
-// https://github.com/mzabriskie/axios
+import axios from "axios";
+
 const communities = {
     fetchCommunity: (community) => {
         const res = [];
@@ -59,6 +60,20 @@ const communities = {
         });
         console.log("Finishing fetching:", res);
         return res;
+    },
+
+    createCommunity: (community) => {
+        const access = (community.access === "private");
+        axios.post("/community", {
+            comm_name: community.community_name,
+            access
+        })
+        .then((res) => {
+            console.log(res);
+        })
+        .catch((err) => {
+            console.log(err);
+        });
     }
 };
 

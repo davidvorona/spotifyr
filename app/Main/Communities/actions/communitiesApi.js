@@ -1,7 +1,7 @@
 /* eslint-disable arrow-body-style */
 import axios from "axios";
 
-const communities = {
+const communitiesApi = {
     fetchCommunity: (community) => {
         return axios.get("/community", {
             params: {
@@ -63,4 +63,4 @@ const communities = {
     }
 };
 
-export default communities;
+export default communitiesApi;

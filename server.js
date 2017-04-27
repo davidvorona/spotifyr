@@ -6,12 +6,17 @@ const cookieParser = require("cookie-parser");
 const bodyParser = require("body-parser");
 const webpackConfig = require("./webpack.config");
 
-const spotifyController = require("./controllers/spotify/spotifyController");
+const authController = require("./controllers/spotify/authController");
+const spotifyUserController = require("./controllers/spotify/spotifyUserController");
+const spotifyMusicController = require("./controllers/spotify/spotifyMusicController");
 const userController = require("./controllers/users/userController");
 const communityController = require("./controllers/communities/communityController");
 
 const app = express();
 const server = require("http").createServer(app);
+
+app.use(bodyParser.json());
+app.use(express.static(path.join(__dirname, "/public")));  // wtf is wrong with this
 
 // websockets setup and hideous clientsCount func
 const io = require("socket.io")(server);
@@ -35,24 +40,39 @@ app.use(webpackDevMid(compiler, {
 
 app.use(webpackHotMid(compiler));
 
-app.use("static/", express.static(path.join(__dirname, "app/")));
-app.use(bodyParser.json());
-
 // spotify auth routes and middleware
 app.use(cookieParser());
 
-app.get("/login", spotifyController.requestAuthToAccessData);
+app.get("/login", authController.requestAuthToAccessData);
 
 app.get("/callback",
-  spotifyController.requestAccessAndRefreshTokens,
-  spotifyController.fetchSpotifyUser,
-  userController.saveUser
+  authController.requestAccessAndRefreshTokens,
+  spotifyUserController.fetchSpotifyUser,
+  userController.saveUser // might remove this
 );
 
 // have to figure out when exactly I'll use this
-app.get("/refresh_token", spotifyController.refreshToken, userController.saveUser);
+app.get("/refresh_token", authController.refreshToken, userController.saveUser);
 
 // app and api routes
+app.get("/user", spotifyUserController.fetchSpotifyUser, (req, res) => {
+    res.send(req.body);
+});
+
+app.get("/music",
+    spotifyMusicController.fetchSpotifySongs,
+    spotifyMusicController.fetchSpotifyPlaylists,
+    spotifyMusicController.formatMusic,
+    (req, res) => {
+        res.send(req.body);
+    }
+);
+
+app.get("/playlist", spotifyMusicController.fetchPlaylistTracks, (req, res) => {
+    console.log(req.body);
+    res.send(req.body);
+});
+
 app.get("/community", communityController.fetchCommunity, (req, res) => {
     const nsp = io.of(`/${req.query.comm_name}`);
     nsp.on("connection", (socket) => {

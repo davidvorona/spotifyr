@@ -1,4 +1,4 @@
-/* eslint-disable import/no-extraneous-dependencies */
+/* eslint-disable import/no-extraneous-dependencies, consistent-return */
 const querystring = require("querystring");
 const request = require("request");
 
@@ -16,12 +16,12 @@ const generateRandomString = (length) => {
 
 const stateKey = "spotif_auth_state";
 
-const spotifyController = {
+const authController = {
     requestAuthToAccessData: (req, res) => {
         const state = generateRandomString(16);
         res.cookie(stateKey, state);
 
-        // client gets account info, playlists, streaming(?) music library, and modify privileges
+        // client gets account info, playlists, streaming(?), music library, and modify privileges
         const scope = "user-read-private user-read-email playlist-read-private streaming " +
               "user-library-read playlist-modify-private";
         const queryString = querystring.stringify({
@@ -75,7 +75,8 @@ const spotifyController = {
     },
 
     refreshToken: (req, res, next) => {
-        const refresh_token = req.cookies.refresh_token;
+        console.log("Refreshing tokens...");
+        let refresh_token = req.cookies.refresh_token;
         const authOptions = {
             url: "https://accounts.spotify.com/api/token",
             headers: { "Authorization": "Basic " + (new Buffer(client_id + ":" + client_secret).toString("base64")) },
@@ -87,28 +88,20 @@ const spotifyController = {
         };
 
         request.post(authOptions, (error, response, body) => {
+            console.log("Sending request...");
             if (!error && response.statusCode === 200) {
                 const access_token = body.access_token;
-                res.body.access_token = access_token;
-                res.body.refresh_token = refresh_token;
+                refresh_token = body.refresh_token;
+                // expose new tokens to client
+                res.cookie("access_token", access_token);
+                res.cookie("refresh_token", refresh_token);
+                // store new tokens in DB
+                req.body.access_token = access_token;
+                req.body.refresh_token = refresh_token;
                 return next();
             }
-        });
-    },
-
-    fetchSpotifyUser: (req, res, next) => {
-        const access_token = req.body.access_token;
-        const options = {
-            url: "https://api.spotify.com/v1/me",
-            headers: { "Authorization": `Bearer ${access_token}` },
-            json: true
-        };
-        request.get(options, (error, response, body) => {
-            if (error) return res.redirect("/error");
-            req.body.spotify_id = body.id;
-            return next();
         });
     }
 };
 
-module.exports = spotifyController;
+module.exports = authController;

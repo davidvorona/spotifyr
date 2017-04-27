@@ -8,7 +8,7 @@ const toPGDate = () => new Date().toISOString().slice(0, 19).replace("T", " ");
 const userController = {
     saveUser: (req, res) => {
         const results = [];
-        const { spotify_id, access_token, refresh_token } = req.body;
+        const { spotifyId, access_token, refresh_token } = req.body;
         const date_created = toPGDate();
 
         pg.connect(connectionString, (err, client, done) => { // eslint-disable-line consistent-return
@@ -23,7 +23,7 @@ const userController = {
               "access_token, refresh_token, date_created) " +
               "VALUES ($1, $2, $3, $4) ON CONFLICT (spotify_id) DO UPDATE " +
               "SET access_token = EXCLUDED.access_token, refresh_token = EXCLUDED.refresh_token",
-              [spotify_id, access_token, refresh_token, date_created]);
+              [spotifyId, access_token, refresh_token, date_created]);
 
             query.on("error", (error) => {
                 done();

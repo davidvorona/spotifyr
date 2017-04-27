@@ -1,5 +1,25 @@
 import { call, put, takeLatest } from "redux-saga/effects";
 import communitiesApi from "./Main/Communities/actions/communitiesApi";
+import userApi from "./Main/actions/userApi";
+import musicApi from "./Main/MyMusic/actions/musicApi";
+
+function* fetchSpotifyUser() {
+    try {
+        const user = yield call(userApi.fetchSpotifyUser);
+        yield put({ type: "FETCH_USER_SUCCEEDED", user });
+    } catch (err) {
+        yield put({ type: "FETCH_USER_FAILED", message: err.message });
+    }
+}
+
+function* fetchSpotifyMusic() {
+    try {
+        const music = yield call(musicApi.fetchSpotifyMusic);
+        yield put({ type: "FETCH_MUSIC_SUCCEEDED", music });
+    } catch (err) {
+        yield put({ type: "FETCH_MUSIC_FAILED", message: err.message });
+    }
+}
 
 function* fetchPopular() {
     try {
@@ -46,6 +66,8 @@ function* createCommunity(action) {
 // export
 function* sagas() {
     yield [
+        takeLatest("FETCH_SPOTIFY_USER", fetchSpotifyUser),
+        takeLatest("FETCH_SPOTIFY_MUSIC", fetchSpotifyMusic),
         takeLatest("FETCH_POPULAR", fetchPopular),
         takeLatest("FETCH_MY_COMMUNITIES", fetchMyCommunities),
         takeLatest("FETCH_COMMUNITY", fetchCommunity),

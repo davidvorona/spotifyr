@@ -5,8 +5,15 @@ import { connect } from "react-redux";
 
 import * as actions from "./actions/musicActions";
 
-class NowPlaying extends Component {
+class MyMusic extends Component {
+    componentDidMount() {
+        console.log("Fetching music...");
+        const { fetchSpotifyMusic } = this.props;
+        fetchSpotifyMusic();
+    }
+
     render() {
+        console.log(this.props);
         return (
             <div className="container-fluid widget-container">
               <h3>My Music</h3>
@@ -17,12 +24,12 @@ class NowPlaying extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        nowPlaying: state.nowPlaying
+        music: state.music
     };
 };
 
 const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
 
-export default connect(mapStateToProps, mapDispatchToProps)(NowPlaying);
+export default connect(mapStateToProps, mapDispatchToProps)(MyMusic);
 
 if (module.hot) module.hot.accept();

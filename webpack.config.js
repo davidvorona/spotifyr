@@ -38,7 +38,11 @@ module.exports = {
                 loader: "imports-loader"
             },
             {
-                test: /\.(gif|jpe?g|png|ico)$/,
+                test: /\.ico$/,
+                loader: "file-loader"
+            },
+            {
+                test: /\.(gif|jpeg|png)$/,
                 loader: "url-loader?limit=10000"
             },
             {

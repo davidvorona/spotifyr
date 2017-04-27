@@ -9,8 +9,13 @@ import rootReducer from "./reducers/rootReducer";
 import sagas from "./sagas";
 import BaseComponent from "./Main/components/BaseComponent";
 
-// create an object for the default data (currently a test object)
+// create an object for the default app state
 const defaultState = {
+    user: {
+        spotifyName: "",
+        spotifyId: "",
+        imageUrl: ""
+    },
     panels: {
         overlayMenu: false,
         leftPanel: "Menu",
@@ -20,12 +25,12 @@ const defaultState = {
         popular: [],
         myCommunities: [],
         current: [],
-        activeTab: ["popular", "list", true] // activeTab
+        activeTab: ["popular", "list", true]
     },
     music: {
-        playlists: [],
         songs: [],
-        currentPlaylist: "Vibes",
+        playlists: [],
+        currentPlaylist: "",
         activeTab: ["playlists", "list", false]
     },
     nowPlaying: {

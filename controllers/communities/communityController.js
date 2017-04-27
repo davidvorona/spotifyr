@@ -37,12 +37,13 @@ const communityController = {
         });
     },
 
-    fetchCommunity: (req, res) => {
-        const results = [];
-        return results;
+    fetchCommunity: (req, res, next) => {
+        // move socket logic here and call it joinCommunity?
+        console.log(req.query);
+        return next();
     },
 
-    saveCommunity: (req, res) => {
+    saveCommunity: (req, res, next) => {
         const results = [];
         const comm_name = req.body.comm_name;
         const comm_access = req.body.access;
@@ -75,7 +76,7 @@ const communityController = {
 
             query.on("end", () => {
                 done();
-                res.send(results);
+                return next();
             });
         });
     },

@@ -11,6 +11,16 @@ const userController = require("./controllers/users/userController");
 const communityController = require("./controllers/communities/communityController");
 
 const app = express();
+const server = require("http").createServer(app);
+
+// websockets setup and hideous clientsCount func
+const io = require("socket.io")(server);
+
+const clientsCount = comm_name => Object.keys(io.nsps[`/${comm_name}`].adapter.nsp.connected).length + 1;
+
+io.on("connection", () => {
+    console.log("Connected to sockets.");
+});
 
 // webpack middleware
 const compiler = webpack(webpackConfig);
@@ -43,14 +53,30 @@ app.get("/callback",
 app.get("/refresh_token", spotifyController.refreshToken, userController.saveUser);
 
 // app and api routes
-app.post("/community", communityController.saveCommunity);
+app.get("/community", communityController.fetchCommunity, (req, res) => {
+    const nsp = io.of(`/${req.query.comm_name}`);
+    nsp.on("connection", (socket) => {
+        console.log("Someone connected to nsp.");
+        socket.on("USER_JOINED", data => console.log(data.message));
+    });
+    res.send([req.query.comm_name, "Love Me", "Lil Wayne", clientsCount(req.query.comm_name)]);
+});
+
+app.post("/community", communityController.saveCommunity, (req, res) => {
+    const nsp = io.of(`/${req.body.comm_name}`);
+    nsp.on("connection", (socket) => {
+        console.log("Someone connected to nsp.");
+        socket.on("USER_JOINED", data => console.log(data.message));
+    });
+    res.send([req.body.comm_name, "Love Me", "Lil Wayne", clientsCount(req.body.comm_name)]);
+});
 
 app.get("/", (req, res) => {
     if (!req.cookies.access_token) return res.redirect("/login");
     return res.sendFile(path.join(__dirname, "index.html"));
 });
 
-app.listen(8080, (err) => {
+server.listen(8080, (err) => {
     if (err) {
         console.log(err);
         return;

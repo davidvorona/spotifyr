@@ -3,7 +3,7 @@ const communities = (state = [], action) => {
     case "DISPLAY_COMMUNITY_TAB":
         return {
             ...state,
-            active: [action.active, action.kind, action.refresh]
+            activeTab: [action.activeTab, action.kind, action.refresh]
         };
     case "FETCH_POPULAR_SUCCEEDED":
         return {
@@ -19,13 +19,13 @@ const communities = (state = [], action) => {
         return {
             ...state,
             current: action.community,
-            active: ["current", "content", false]
+            activeTab: ["current", "content", false]
         };
-    case "CREATE_COMMUNITY":
+    case "CREATE_COMMUNITY_SUCCEEDED":
         return {
             ...state,
             current: action.community,
-            active: ["current", "content", false]
+            activeTab: ["current", "content", false]
         };
     case "FETCH_FAILED":
         console.log("Fetch failed.");

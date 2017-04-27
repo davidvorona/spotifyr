@@ -9,6 +9,7 @@ import LeftPanel from "./components/LeftPanel";
 import RightPanel from "./components/RightPanel";
 import AppModal from "./components/AppModal";
 
+
 class Main extends Component {
     render() {
         const { leftPanel, rightPanel } = this.props.panels;

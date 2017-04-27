@@ -22,7 +22,10 @@ function* fetchMyCommunities() {
 function* fetchCommunity(action) {
     try {
         const community = yield call(communitiesApi.fetchCommunity, action.community);
-        yield put({ type: "FETCH_COMMUNITY_SUCCEEDED", community });
+        yield [
+            put({ type: "FETCH_COMMUNITY_SUCCEEDED", community }),
+            put({ type: "JOIN_COMMUNITY_SUCCEEDED", isConnected: true })
+        ];
     } catch (err) {
         yield put({ type: "FETCH_FAILED", message: err.message });
     }
@@ -31,7 +34,10 @@ function* fetchCommunity(action) {
 function* createCommunity(action) {
     try {
         const community = yield call(communitiesApi.createCommunity, action.community);
-        yield put({ type: "CREATE_COMMUNITY_SUCCEEDED", community });
+        yield [
+            put({ type: "CREATE_COMMUNITY_SUCCEEDED", community }),
+            put({ type: "JOIN_COMMUNITY_SUCCEEDED", isConnected: true })
+        ];
     } catch (err) {
         yield put({ type: "CREATE_FAILED", message: err.message });
     }

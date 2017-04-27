@@ -1,10 +1,10 @@
 // community action creators*
 
 // community tab
-export const displayCommunityTab = (active, kind, refresh) => {
+export const displayCommunityTab = (activeTab, kind, refresh) => {
     return {
         type: "DISPLAY_COMMUNITY_TAB",
-        active,
+        activeTab,
         kind,
         refresh
     };

@@ -6,6 +6,11 @@ const utils = (state = [], action) => {
             modalTitle: action.modalTitle,
             modalContent: action.modalContent
         };
+    case "JOIN_COMMUNITY_SUCCEEDED":
+        return {
+            ...state,
+            isConnected: action.isConnected
+        };
     default:
         return state;
     }

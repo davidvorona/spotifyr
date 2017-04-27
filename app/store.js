@@ -20,13 +20,13 @@ const defaultState = {
         popular: [],
         myCommunities: [],
         current: [],
-        active: ["popular", "list", true]
+        activeTab: ["popular", "list", true] // activeTab
     },
     music: {
         playlists: [],
         songs: [],
         currentPlaylist: "Vibes",
-        active: ["playlists", "list", false]
+        activeTab: ["playlists", "list", false]
     },
     nowPlaying: {
         song: "Love Me",
@@ -36,6 +36,7 @@ const defaultState = {
     },
     utils: {
         isLoading: false,
+        isConnected: false,
         modalTitle: "",
         modalContent: BaseComponent
     }

@@ -5,10 +5,10 @@ import PanelList from "./PanelList";
 import refresh from "../../../public/refresh.png";
 
 const TabBody = ({ props, CustomComponent, fetch, fetchAll }) => {
-    const active = props.active[0];
-    const type = props.active[1];
-    const isRefresh = props.active[2];
-    const tabData = props[active];
+    const activeTab = props.activeTab[0];
+    const type = props.activeTab[1];
+    const isRefresh = props.activeTab[2];
+    const tabData = props[activeTab];
 
     return (
         <div className="content-container">

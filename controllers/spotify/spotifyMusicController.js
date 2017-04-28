@@ -39,19 +39,23 @@ const spotifyMusicController = {
         const songs = [];
         const playlists = [];
         req.body.songs.items.forEach((el) => {
-            const temp = {};
-            temp.album = el.track.album.name;
-            temp.artists = [];
-            el.track.artists.forEach(i => temp.artists.push(i.name));
-            temp.name = el.track.name;
-            temp.href = el.track.external_urls.spotify;
+            const temp = [];
+            temp.push(el.track.name);
+            const tempArtists = [];
+            el.track.artists.forEach((i) => {
+                tempArtists.push(i.name);
+            });
+            temp.push(tempArtists);
+            temp.push(el.track.album.name);
+            temp.push(el.track.external_urls.spotify);
             songs.push(temp);
         });
 
         req.body.playlists.items.forEach((el) => {
-            const temp = {};
-            temp.name = el.name;
-            temp.tracks = el.tracks;
+            const temp = [];
+            temp.push(el.name);
+            temp.push(el.tracks.total);
+            temp.push(el.tracks.href);
             playlists.push(temp);
         });
         req.body.songs = songs;

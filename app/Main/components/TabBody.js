@@ -4,7 +4,7 @@ import React, { Component } from "react";
 import PanelList from "./PanelList";
 import refresh from "../../../public/refresh.png";
 
-const TabBody = ({ props, CustomComponent, fetch, fetchAll }) => {
+const TabBody = ({ props, ListComponent, CustomComponent, fetch, fetchAll }) => {
     const activeTab = props.activeTab[0];
     const type = props.activeTab[1];
     const isRefresh = props.activeTab[2];
@@ -12,7 +12,7 @@ const TabBody = ({ props, CustomComponent, fetch, fetchAll }) => {
 
     return (
         <div className="content-container">
-          {type === "list" ? <PanelList list={tabData} fetch={fetch} /> : <CustomComponent data={tabData}/>}
+          {type === "list" ? <ListComponent list={tabData} fetch={fetch} /> : <CustomComponent data={tabData}/>}
           {isRefresh === true ? <button className="clear-image-button" onClick={() => { fetchAll(); }}>
             <img src={refresh} className="refresh spin-div"/>
           </button> : null }

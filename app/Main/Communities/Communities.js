@@ -8,6 +8,7 @@ import io from "socket.io-client";
 import * as actions from "./actions/communitiesActions";
 import * as utils from "../actions/utilsActions";
 import TabBody from "../components/TabBody";
+import PanelList from "../components/PanelList";
 import Community from "./components/Community";
 import ActiveTab from "../components/ActiveTab";
 import CommunityForm from "./components/CommunityForm";
@@ -73,6 +74,7 @@ class Communities extends Component {
               </div>
               <TabBody
                   props={communities}
+                  ListComponent={PanelList}
                   CustomComponent={Community}
                   fetch={fetchCommunity}
                   fetchAll={this.chooseFetchAll(communities.activeTab[0])}

@@ -30,8 +30,9 @@ const defaultState = {
     music: {
         songs: [],
         playlists: [],
+        queue: [],
         currentPlaylist: "",
-        activeTab: ["playlists", "list", false]
+        activeTab: ["songs", "list", false]
     },
     nowPlaying: {
         song: "Love Me",

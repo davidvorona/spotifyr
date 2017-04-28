@@ -3,7 +3,7 @@ import React, { Component } from "react";
 
 const ListItem = ({ item, fetch }) => {
     return (
-        <div className="list-group-item container-fluid">
+        <div className="list-group-item panel-list-item container-fluid">
           <div className="col-lg-4">
             <b className="pull-left">{item[0]}</b>
           </div>

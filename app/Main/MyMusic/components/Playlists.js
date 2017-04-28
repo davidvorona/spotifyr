@@ -50,7 +50,9 @@ class Playlists extends Component {
         }
         return (
           <div>
-            <div className="pull-left add-button" onClick={() => { this.returnToPlaylists(); }}>X</div>
+            <div className="row">
+              <div className="col-sm-4 add-button" onClick={() => { this.returnToPlaylists(); }}>Back to Playlists</div>
+            </div>
             <div className="list-group">
               {currentPlaylist.map((item, i) => <SongsListItem key={i} i={i} item={item} fetch={addToQueue} />)}
             </div>

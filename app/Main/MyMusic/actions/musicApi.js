@@ -8,6 +8,18 @@ const musicApi = {
         .catch((err) => {
             console.log(err);
         });
+    },
+
+    fetchPlaylist: (currentPlaylist) => {
+        return axios.get("/playlist", {
+            params: {
+                href: currentPlaylist
+            }
+        })
+        .then(res => res.data)
+        .catch((err) => {
+            console.log(err);
+        });
     }
 };
 

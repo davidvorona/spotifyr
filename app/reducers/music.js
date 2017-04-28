@@ -11,9 +11,19 @@ const music = (state = [], action) => {
             songs: action.music.songs,
             playlists: action.music.playlists
         };
+    case "FETCH_PLAYLIST_SUCCEEDED":
+        return {
+            ...state,
+            currentPlaylist: action.currentPlaylist
+        };
     case "FETCH_MUSIC_FAILED":
         return {
             ...state
+        };
+    case "EMPTY_CURRENT_PLAYLIST":
+        return {
+            ...state,
+            currentPlaylist: []
         };
     case "ADD_TO_QUEUE":
         return {

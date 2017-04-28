@@ -52,7 +52,7 @@ app.get("/callback",
 );
 
 // have to figure out when exactly I'll use this
-app.get("/refresh_token", authController.refreshToken, userController.saveUser);
+app.get("/refresh_token", authController.refreshToken, spotifyUserController.fetchSpotifyUser, userController.saveUser);
 
 // app and api routes
 app.get("/user", spotifyUserController.fetchSpotifyUser, (req, res) => {
@@ -68,10 +68,13 @@ app.get("/music",
     }
 );
 
-app.get("/playlist", spotifyMusicController.fetchPlaylistTracks, (req, res) => {
-    console.log(req.body);
-    res.send(req.body);
-});
+app.get("/playlist",
+    spotifyMusicController.fetchPlaylistTracks,
+    spotifyMusicController.formatPlaylist,
+    (req, res) => {
+        res.send(req.body.currentPlaylist);
+    }
+);
 
 app.get("/community", communityController.fetchCommunity, (req, res) => {
     const nsp = io.of(`/${req.query.comm_name}`);

@@ -31,8 +31,18 @@ const spotifyMusicController = {
     },
 
     fetchPlaylistTracks: (req, res, next) => {
-        const access_token = req.ccokies.access_token;
-        const playlist_id = req.query.playlistId; // this depends on playlist object
+        const access_token = req.cookies.access_token;
+        const href = req.query.href;
+        const options = {
+            url: href,
+            headers: { "Authorization": `Bearer ${access_token}` },
+            json: true
+        };
+        request.get(options, (error, response, body) => {
+            if (error) return res.redirect("/error");
+            req.body.currentPlaylist = body;
+            return next();
+        });
     },
 
     formatMusic: (req, res, next) => {
@@ -60,6 +70,26 @@ const spotifyMusicController = {
         });
         req.body.songs = songs;
         req.body.playlists = playlists;
+        return next();
+    },
+
+    formatPlaylist: (req, res, next) => {
+        const currentPlaylist = [];
+        req.body.currentPlaylist.items.forEach((el) => {
+            if (el.track.external_urls.spotify !== undefined) {  // is undefined if song is from local machine
+                const temp = [];
+                temp.push(el.track.name);
+                const tempArtists = [];
+                el.track.artists.forEach((i) => {
+                    tempArtists.push(i.name);
+                });
+                temp.push(tempArtists);
+                temp.push(el.track.album.name);
+                temp.push(el.track.external_urls.spotify);
+                currentPlaylist.push(temp);
+            }
+        });
+        req.body.currentPlaylist = currentPlaylist;
         return next();
     }
 };

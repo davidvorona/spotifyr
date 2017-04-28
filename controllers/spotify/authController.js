@@ -75,8 +75,8 @@ const authController = {
     },
 
     refreshToken: (req, res, next) => {
-        console.log("Refreshing tokens...");
         let refresh_token = req.cookies.refresh_token;
+        console.log("Refreshing tokens...", refresh_token);
         const authOptions = {
             url: "https://accounts.spotify.com/api/token",
             headers: { "Authorization": "Basic " + (new Buffer(client_id + ":" + client_secret).toString("base64")) },
@@ -98,8 +98,10 @@ const authController = {
                 // store new tokens in DB
                 req.body.access_token = access_token;
                 req.body.refresh_token = refresh_token;
+                console.log("Finished refreshing...");
                 return next();
             }
+            console.log("There was an error.");
         });
     }
 };

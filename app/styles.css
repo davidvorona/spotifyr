@@ -240,7 +240,8 @@ button:hover {
     color: black !important;
     height: 80% !important;
     padding-top: 2%;
-    overflow: scroll;
+    overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .modal-body {

@@ -3,6 +3,7 @@ const request = require("request");
 
 const spotifyUserController = {
     fetchSpotifyUser: (req, res, next) => {
+        console.log("Fetching user...")
         const access_token = req.body.access_token || req.cookies.access_token;
         const options = {
             url: "https://api.spotify.com/v1/me",

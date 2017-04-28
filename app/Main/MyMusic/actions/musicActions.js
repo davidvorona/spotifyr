@@ -15,9 +15,16 @@ export const displayMusicTab = (activeTab, kind, refresh) => {
     };
 };
 
-export const fetchPlaylist = () => {
+export const fetchPlaylist = (currentPlaylist) => {
     return {
-        type: "FETCH_PLAYLIST"
+        type: "FETCH_PLAYLIST",
+        currentPlaylist
+    };
+};
+
+export const emptyCurrentPlaylist = () => {
+    return {
+        type: "EMPTY_CURRENT_PLAYLIST"
     };
 };
 

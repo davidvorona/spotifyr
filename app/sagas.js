@@ -21,6 +21,15 @@ function* fetchSpotifyMusic() {
     }
 }
 
+function* fetchPlaylist(action) {
+    try {
+        const currentPlaylist = yield call(musicApi.fetchPlaylist, action.currentPlaylist);
+        yield put({ type: "FETCH_PLAYLIST_SUCCEEDED", currentPlaylist });
+    } catch (err) {
+        yield put({ type: "FETCH_MUSIC_FAILED", message: err.message });
+    }
+}
+
 function* fetchPopular() {
     try {
         const popular = yield call(communitiesApi.fetchPopular);
@@ -68,6 +77,7 @@ function* sagas() {
     yield [
         takeLatest("FETCH_SPOTIFY_USER", fetchSpotifyUser),
         takeLatest("FETCH_SPOTIFY_MUSIC", fetchSpotifyMusic),
+        takeLatest("FETCH_PLAYLIST", fetchPlaylist),
         takeLatest("FETCH_POPULAR", fetchPopular),
         takeLatest("FETCH_MY_COMMUNITIES", fetchMyCommunities),
         takeLatest("FETCH_COMMUNITY", fetchCommunity),

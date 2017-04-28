@@ -7,6 +7,7 @@ const toPGDate = () => new Date().toISOString().slice(0, 19).replace("T", " ");
 
 const userController = {
     saveUser: (req, res) => {
+        console.log("Saving user...");
         const results = [];
         const { spotifyId, access_token, refresh_token } = req.body;
         const date_created = toPGDate();

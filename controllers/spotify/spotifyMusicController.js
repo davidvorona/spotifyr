@@ -91,6 +91,31 @@ const spotifyMusicController = {
         });
         req.body.currentPlaylist = currentPlaylist;
         return next();
+    },
+
+    fetchNowPlaying: (req, res, next) => {
+        const nowPlaying = [];
+        const access_token = req.cookies.access_token;
+        const options = {
+            url: "https://api.spotify.com/v1/me/player",
+            // url: "https://api.spotify.com/v1/me/player/currently-playing",
+            headers: { "Authorization": `Bearer ${access_token}` },
+            json: true
+        };
+        request.get(options, (error, response, body) => {
+            if (error) return res.redirect("/error");
+            console.log(body);
+            nowPlaying.push(body.item.name);
+            const tempArtists = [];
+            body.item.artists.forEach((el) => {
+                tempArtists.push(el.name);
+            });
+            nowPlaying.push(tempArtists);
+            nowPlaying.push(body.item.album.name);
+            nowPlaying.push(body.item.album.images[0].url);
+            req.body.nowPlaying = nowPlaying;
+            return next();
+        });
     }
 };
 

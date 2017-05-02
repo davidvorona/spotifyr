@@ -23,7 +23,7 @@ const authController = {
 
         // client gets account info, playlists, streaming(?), music library, and modify privileges
         const scope = "user-read-private user-read-email playlist-read-private streaming " +
-              "user-library-read playlist-modify-private";
+              "user-library-read user-read-playback-state playlist-modify-private";
         const queryString = querystring.stringify({
             response_type: "code",
             client_id,

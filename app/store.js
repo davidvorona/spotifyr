@@ -35,10 +35,7 @@ const defaultState = {
         activeTab: ["songs", "list", false]
     },
     nowPlaying: {
-        song: "Love Me",
-        artist: "Lil Wayne",
-        album: "Love Me - Single",
-        image: "https://images.rapgenius.com/b13998f08c2fe9349b19c4464d786ce1.500x500x1.jpg"
+        currentSong: []
     },
     utils: {
         isLoading: false,

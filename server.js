@@ -79,6 +79,10 @@ app.get("/playlist",
     }
 );
 
+app.get("/nowplaying", spotifyMusicController.fetchNowPlaying, (req, res) => {
+    res.send(req.body.nowPlaying);
+});
+
 app.get("/community", communityController.fetchCommunity, (req, res) => {
     const nsp = io.of(`/${req.query.comm_name}`);
     nsp.on("connection", (socket) => {

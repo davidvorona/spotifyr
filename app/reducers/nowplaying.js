@@ -2,10 +2,16 @@ const nowPlaying = (state = [], action) => {
     switch (action.type) {
     case "CHANGE_SONG":
         return {
+            ...state
+        };
+    case "FETCH_NOW_PLAYING_SUCCEEDED":
+        return {
             ...state,
-            [nowPlaying.song]: action.song,
-            [nowPlaying.artist]: action.artist,
-            [nowPlaying.album]: action.album
+            currentSong: action.currentSong
+        };
+    case "FETCH_NOW_PLAYING_FAILED":
+        return {
+            ...state
         };
     default:
         return state;

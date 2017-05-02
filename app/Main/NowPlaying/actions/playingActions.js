@@ -1,10 +1,15 @@
 // action creators*
 
-export const changeSong = (song, artist, album) => {
+// for now, just fetch what I'm playing
+// TODO: fetch what community is playing
+export const fetchNowPlaying = () => {
     return {
-        type: "CHANGE_SONG",
-        song,
-        artist,
-        album
+        type: "FETCH_NOW_PLAYING"
+    };
+};
+
+export const changeSong = () => {
+    return {
+        type: "CHANGE_SONG"
     };
 };

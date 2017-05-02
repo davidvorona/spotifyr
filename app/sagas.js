@@ -2,6 +2,7 @@ import { call, put, takeLatest } from "redux-saga/effects";
 import communitiesApi from "./Main/Communities/actions/communitiesApi";
 import userApi from "./Main/actions/userApi";
 import musicApi from "./Main/MyMusic/actions/musicApi";
+import playingApi from "./Main/NowPlaying/actions/playingApi";
 
 function* fetchSpotifyUser() {
     try {
@@ -33,6 +34,18 @@ function* fetchPlaylist(action) {
         ];
     } catch (err) {
         yield put({ type: "FETCH_MUSIC_FAILED", message: err.message });
+    }
+}
+
+function* fetchNowPlaying() {
+    try {
+        const currentSong = yield call(playingApi.fetchNowPlaying);
+        yield [
+            put({ type: "FETCH_NOW_PLAYING_SUCCEEDED", currentSong }),
+            put({ type: "STOP_LOADING" })
+        ];
+    } catch (err) {
+        yield put({ type: "FETCH_NOW_PLAYING_FAILED", message: err.message });
     }
 }
 
@@ -102,6 +115,7 @@ function* sagas() {
         takeLatest("FETCH_SPOTIFY_USER", fetchSpotifyUser),
         takeLatest("FETCH_SPOTIFY_MUSIC", fetchSpotifyMusic),
         takeLatest("FETCH_PLAYLIST", fetchPlaylist),
+        takeLatest("FETCH_NOW_PLAYING", fetchNowPlaying),
         takeLatest("FETCH_POPULAR", fetchPopular),
         takeLatest("FETCH_MY_COMMUNITIES", fetchMyCommunities),
         takeLatest("FETCH_COMMUNITY", fetchCommunity),

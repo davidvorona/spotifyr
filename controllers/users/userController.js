@@ -7,7 +7,6 @@ const toPGDate = () => new Date().toISOString().slice(0, 19).replace("T", " ");
 
 const userController = {
     saveUser: (req, res) => {
-        console.log("Saving user...");
         const results = [];
         const { spotifyId, access_token, refresh_token } = req.body;
         const date_created = toPGDate();
@@ -15,7 +14,7 @@ const userController = {
         pg.connect(connectionString, (err, client, done) => { // eslint-disable-line consistent-return
             if (err) {
                 done();
-                console.log(err);
+                console.log("Error in pg.connect:", err);
                 return res.status(500).json({ success: false, data: err });
             }
 
@@ -29,6 +28,7 @@ const userController = {
             query.on("error", (error) => {
                 done();
                 results.push(error);
+                console.log("Error from query.");
                 return res.status(500).json(results);
             });
 

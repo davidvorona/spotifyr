@@ -104,7 +104,6 @@ const spotifyMusicController = {
         };
         request.get(options, (error, response, body) => {
             if (error) return res.redirect("/error");
-            console.log(body);
             nowPlaying.push(body.item.name);
             const tempArtists = [];
             body.item.artists.forEach((el) => {

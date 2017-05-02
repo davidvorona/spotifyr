@@ -47,16 +47,19 @@ app.get("/login", authController.requestAuthToAccessData);
 
 app.get("/callback",
   authController.requestAccessAndRefreshTokens,
-  spotifyUserController.fetchSpotifyUser,
-  userController.saveUser // might remove this
+  spotifyUserController.fetchSpotifyUser, // with req.body
+  userController.saveUser
 );
 
-// have to figure out when exactly I'll use this
-app.get("/refresh_token", authController.refreshToken, spotifyUserController.fetchSpotifyUser, userController.saveUser);
+app.get("/refresh_token",
+  authController.refreshToken,
+  spotifyUserController.fetchSpotifyUser, // with req.body
+  userController.saveUser
+);
 
 // app and api routes
 app.get("/user", spotifyUserController.fetchSpotifyUser, (req, res) => {
-    res.send(req.body);
+    res.send(req.body); // with req.cookies
 });
 
 app.get("/music",

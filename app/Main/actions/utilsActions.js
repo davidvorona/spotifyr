@@ -7,3 +7,15 @@ export const chooseModalTitleContent = (modalTitle, modalContent) => {
         modalContent
     };
 };
+
+export const isLoading = () => {
+    return {
+        type: "IS_LOADING"
+    };
+};
+
+export const stopLoading = () => {
+    return {
+        type: "STOP_LOADING"
+    };
+};

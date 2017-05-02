@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars, arrow-body-style */
 import React, { Component } from "react";
 
-const ListItem = ({ item, fetch }) => {
+const ListItem = ({ item, action }) => {
     return (
         <div className="list-group-item panel-list-item container-fluid">
           <div className="col-lg-4">
@@ -12,7 +12,7 @@ const ListItem = ({ item, fetch }) => {
               <div className="pull-left col-md-12">{`Listeners: ${item[3]}`}</div>
           </div>
           <button className="col-lg-2 list-button btn"
-            onClick={() => fetch(item[0])}>Tune In
+            onClick={() => action(item[0])}>Tune In
           </button>
         </div>
     );

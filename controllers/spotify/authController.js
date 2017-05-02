@@ -14,7 +14,7 @@ const generateRandomString = (length) => {
     return text;
 };
 
-const stateKey = "spotif_auth_state";
+const stateKey = "spotify_auth_state";
 
 const authController = {
     requestAuthToAccessData: (req, res) => {
@@ -91,7 +91,7 @@ const authController = {
             console.log("Sending request...");
             if (!error && response.statusCode === 200) {
                 const access_token = body.access_token;
-                refresh_token = body.refresh_token;
+                refresh_token = body.refresh_token || req.cookies.refresh_token;  // in case new refresh_token
                 // expose new tokens to client
                 res.cookie("access_token", access_token);
                 res.cookie("refresh_token", refresh_token);

@@ -12,10 +12,12 @@ import PanelList from "../components/PanelList";
 import Community from "./components/Community";
 import ActiveTab from "../components/ActiveTab";
 import CommunityForm from "./components/CommunityForm";
+import LoadingComponent from "../components/LoadingComponent";
 
 class Communities extends Component {
     componentDidMount() {
-        const { fetchPopular, fetchMyCommunities } = this.props;
+        const { fetchPopular, fetchMyCommunities, isLoading } = this.props;
+        isLoading();
         fetchPopular();
         fetchMyCommunities();
     }
@@ -42,7 +44,7 @@ class Communities extends Component {
     }
 
     render() {
-        const { communities, displayCommunityTab, fetchCommunity, chooseModalTitleContent } = this.props;
+        const { communities, utils, displayCommunityTab, fetchCommunity, chooseModalTitleContent } = this.props;
         return (
             <div className="container-fluid widget-container">
               <h3 className="col-sm-1">x</h3>
@@ -72,13 +74,15 @@ class Communities extends Component {
                   display={displayCommunityTab}
                 />
               </div>
-              <TabBody
+              { utils.isLoading ? (<LoadingComponent isLoading={utils.isLoading} />)
+              : (<TabBody
                   props={communities}
                   ListComponent={PanelList}
                   CustomComponent={Community}
-                  fetch={fetchCommunity}
-                  fetchAll={this.chooseFetchAll(communities.activeTab[0])}
-              />
+                  action={fetchCommunity}
+                  actionAll={this.chooseFetchAll(communities.activeTab[0])}
+                />)
+              }
             </div>
         );
     }

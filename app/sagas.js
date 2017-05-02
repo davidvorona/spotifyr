@@ -15,7 +15,10 @@ function* fetchSpotifyUser() {
 function* fetchSpotifyMusic() {
     try {
         const music = yield call(musicApi.fetchSpotifyMusic);
-        yield put({ type: "FETCH_MUSIC_SUCCEEDED", music });
+        yield [
+            put({ type: "FETCH_MUSIC_SUCCEEDED", music }),
+            put({ type: "STOP_LOADING" })
+        ];
     } catch (err) {
         yield put({ type: "FETCH_MUSIC_FAILED", message: err.message });
     }
@@ -24,16 +27,34 @@ function* fetchSpotifyMusic() {
 function* fetchPlaylist(action) {
     try {
         const currentPlaylist = yield call(musicApi.fetchPlaylist, action.currentPlaylist);
-        yield put({ type: "FETCH_PLAYLIST_SUCCEEDED", currentPlaylist });
+        yield [
+            put({ type: "FETCH_PLAYLIST_SUCCEEDED", currentPlaylist }),
+            put({ type: "STOP_LOADING" })
+        ];
     } catch (err) {
         yield put({ type: "FETCH_MUSIC_FAILED", message: err.message });
     }
 }
 
+// function* fetchAllCommunities(action) {
+//     try {
+//         const allCommunities = yield call(communitiesApi.fetchAll);
+//         yield [
+//             put({ type: "FETCH_ALL_COMMUNITIES" }),
+//             put({ type: "STOP_LOADING" })
+//         ];
+//     } catch(err) {
+//         yield put({ type: "FETCH_FAILED", message: err.message });
+//     }
+// }
+
 function* fetchPopular() {
     try {
         const popular = yield call(communitiesApi.fetchPopular);
-        yield put({ type: "FETCH_POPULAR_SUCCEEDED", popular });
+        yield [
+            put({ type: "FETCH_POPULAR_SUCCEEDED", popular }),
+            put({ type: "STOP_LOADING" })
+        ];
     } catch (err) {
         yield put({ type: "FETCH_FAILED", message: err.message });
     }
@@ -42,7 +63,10 @@ function* fetchPopular() {
 function* fetchMyCommunities() {
     try {
         const myCommunities = yield call(communitiesApi.fetchMyCommunities);
-        yield put({ type: "FETCH_MY_COMMUNITIES_SUCCEEDED", myCommunities });
+        yield [
+            put({ type: "FETCH_MY_COMMUNITIES_SUCCEEDED", myCommunities }),
+            put({ type: "STOP_LOADING" })
+        ];
     } catch (err) {
         yield put({ type: "FETCH_FAILED", message: err.message });
     }
@@ -53,7 +77,7 @@ function* fetchCommunity(action) {
         const community = yield call(communitiesApi.fetchCommunity, action.community);
         yield [
             put({ type: "FETCH_COMMUNITY_SUCCEEDED", community }),
-            put({ type: "JOIN_COMMUNITY_SUCCEEDED", isConnected: true })
+            put({ type: "JOIN_IO_NAMESPACE_SUCCEEDED", isConnected: true })
         ];
     } catch (err) {
         yield put({ type: "FETCH_FAILED", message: err.message });
@@ -65,7 +89,7 @@ function* createCommunity(action) {
         const community = yield call(communitiesApi.createCommunity, action.community);
         yield [
             put({ type: "CREATE_COMMUNITY_SUCCEEDED", community }),
-            put({ type: "JOIN_COMMUNITY_SUCCEEDED", isConnected: true })
+            put({ type: "JOIN_IO_NAMESPACE_SUCCEEDED", isConnected: true })
         ];
     } catch (err) {
         yield put({ type: "CREATE_FAILED", message: err.message });

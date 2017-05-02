@@ -4,19 +4,22 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import * as actions from "./actions/musicActions";
+import * as utils from "../actions/utilsActions";
 import TabBody from "../components/TabBody";
 import ActiveTab from "../components/ActiveTab";
 import SongsList from "./components/SongsList";
 import Playlists from "./components/Playlists";
 import BaseComponent from "../components/BaseComponent";
+import LoadingComponent from "../components/LoadingComponent";
 
 class MyMusic extends Component {
     componentDidMount() {
-        const { fetchSpotifyMusic } = this.props;
+        const { fetchSpotifyMusic, isLoading } = this.props;
+        isLoading();
         fetchSpotifyMusic();
     }
 
-    chooseFetch(activeTab) {
+    chooseAction(activeTab) {
         const { addToQueue, fetchPlaylist, removeFromQueue } = this.props;
         switch (activeTab) {
         case "songs":
@@ -31,7 +34,7 @@ class MyMusic extends Component {
     }
 
     render() {
-        const { music, displayMusicTab } = this.props;
+        const { music, utils, displayMusicTab } = this.props;
         return (
             <div className="container-fluid widget-container">
               <h3>My Music</h3>
@@ -55,11 +58,13 @@ class MyMusic extends Component {
                   display={displayMusicTab}
                 />
               </div>
-              <TabBody
+              { utils.isLoading ? (<LoadingComponent isLoading={utils.isLoading} />)
+              : (<TabBody
                   props={music}
                   ListComponent={music.activeTab[0] === "playlists" ? Playlists : SongsList}
-                  fetch={this.chooseFetch(music.activeTab[0])}
-              />
+                  action={this.chooseAction(music.activeTab[0])}
+                />)
+              }
           </div>
         );
     }
@@ -67,11 +72,12 @@ class MyMusic extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        music: state.music
+        music: state.music,
+        utils: state.utils
     };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...actions, ...utils }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(MyMusic);
 

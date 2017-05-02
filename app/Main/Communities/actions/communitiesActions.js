@@ -11,6 +11,12 @@ export const displayCommunityTab = (activeTab, kind, refresh) => {
 };
 
 // community async
+export const fetchAllCommunities = () => {
+    return {
+        type: "FETCH_ALL_COMMUNITIES"
+    };
+};
+
 export const fetchPopular = () => {
     return {
         type: "FETCH_POPULAR"
@@ -23,7 +29,6 @@ export const fetchMyCommunities = () => {
     };
 };
 
-// when sockets/rooms are set up, this should be joinCommunity
 export const fetchCommunity = (community) => {
     return {
         type: "FETCH_COMMUNITY",

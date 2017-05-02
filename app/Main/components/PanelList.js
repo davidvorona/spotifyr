@@ -3,10 +3,10 @@ import React, { Component } from "react";
 
 import ListItem from "./ListItem";
 
-const PanelList = ({ list, fetch }) => {
+const PanelList = ({ list, action }) => {
     return (
         <div className="list-group">
-          {list.map((item, i) => <ListItem key={i} i={i} item={item} fetch={fetch} />)}
+          {list.map((item, i) => <ListItem key={i} i={i} item={item} action={action} />)}
         </div>
     );
 };

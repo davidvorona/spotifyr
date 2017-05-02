@@ -3,10 +3,10 @@ import React, { Component } from "react";
 
 import SongsListItem from "./SongsListItem";
 
-const SongsList = ({ list, fetch }) => {
+const SongsList = ({ list, action }) => {
     return (
         <div className="list-group">
-          {list.map((item, i) => <SongsListItem key={i} i={i} item={item} fetch={fetch} />)}
+          {list.map((item, i) => <SongsListItem key={i} i={i} item={item} action={action} />)}
         </div>
     );
 };

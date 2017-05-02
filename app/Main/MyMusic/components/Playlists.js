@@ -4,11 +4,12 @@ import { bindActionCreators } from "redux";
 import { connect } from "react-redux";
 
 import * as actions from "../actions/musicActions";
+import * as utils from "../../actions/utilsActions";
 import PlaylistItem from "./PlaylistItem";
 import SongsListItem from "./SongsListItem";
 
-// figure out how to retain state so user
-// can switch tabs and return to active playlist
+// add more to store to retain currentPlaylist
+// after leaving and returning to tab
 class Playlists extends Component {
     constructor(props) {
         super(props);
@@ -34,7 +35,7 @@ class Playlists extends Component {
 
     render() {
         const { playlists, currentPlaylist } = this.props.music;
-        const { fetchPlaylist, addToQueue } = this.props;
+        const { fetchPlaylist, addToQueue, isLoading } = this.props;
         if (!this.state.displayPlaylistTracks) {
             return (
                 <div>
@@ -54,7 +55,7 @@ class Playlists extends Component {
               <div className="col-sm-4 add-button" onClick={() => { this.returnToPlaylists(); }}>Back to Playlists</div>
             </div>
             <div className="list-group">
-              {currentPlaylist.map((item, i) => <SongsListItem key={i} i={i} item={item} fetch={addToQueue} />)}
+              {currentPlaylist.map((item, i) => <SongsListItem key={i} i={i} item={item} action={addToQueue} />)}
             </div>
           </div>
         );
@@ -63,11 +64,12 @@ class Playlists extends Component {
 
 const mapStateToProps = (state) => {
     return {
-        music: state.music
+        music: state.music,
+        utils: state.utils
     };
 };
 
-const mapDispatchToProps = dispatch => bindActionCreators(actions, dispatch);
+const mapDispatchToProps = dispatch => bindActionCreators({ ...actions, ...utils }, dispatch);
 
 export default connect(mapStateToProps, mapDispatchToProps)(Playlists);
 

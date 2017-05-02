@@ -2,13 +2,11 @@
 import React, { Component } from "react";
 
 import refresh from "../../../public/refresh.png";
+import whiteRefresh from "../../../public/refresh-white.png";
 
-const LoadingComponent = ({ isLoading }) => {
-    return isLoading ? (
-        <div className="content-container">
-          <img src={refresh} className="refresh spin-div"/>
-        </div>
-    ) : null;
+const LoadingComponent = ({ color, isLoading }) => {
+    const chooseRefresh = (color === "black" ? refresh : whiteRefresh);
+    return (<img src={chooseRefresh} className="refresh spin-div"/>);
 };
 
 export default LoadingComponent;

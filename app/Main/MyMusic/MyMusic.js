@@ -58,7 +58,9 @@ class MyMusic extends Component {
                   display={displayMusicTab}
                 />
               </div>
-              { utils.isLoading ? (<LoadingComponent isLoading={utils.isLoading} />)
+              { utils.isLoading ? (<div className="content-container">
+                  <LoadingComponent color={"black"} isLoading={utils.isLoading} />
+                </div>)
               : (<TabBody
                   props={music}
                   ListComponent={music.activeTab[0] === "playlists" ? Playlists : SongsList}

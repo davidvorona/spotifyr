@@ -74,7 +74,7 @@ class Communities extends Component {
                   display={displayCommunityTab}
                 />
               </div>
-              { utils.isLoading ? (<LoadingComponent isLoading={utils.isLoading} />)
+              { utils.isLoading ? (<LoadingComponent color={"black"} isLoading={utils.isLoading} />)
               : (<TabBody
                   props={communities}
                   ListComponent={PanelList}
